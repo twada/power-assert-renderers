@@ -1,22 +1,49 @@
 {
   "name": "power-assert-renderers",
+  "description": "Power Assert output renderers",
   "version": "0.0.1",
-  "author": "Takuto Wada <takuto.wada@gmail.com>",
+  "author": {
+    "name": "Takuto Wada",
+    "email": "takuto.wada@gmail.com",
+    "url": "http://github.com/twada"
+  },
+  "bugs": {
+    "url": "http://github.com/twada/power-assert-renderers/issues"
+  },
   "dependencies": {
-    "array-foreach": "^1.0.1"
+    "array-foreach": "^1.0.1",
+    "power-assert-formatter": "^1.1.0"
   },
   "devDependencies": {
     "ava": "^0.2.0",
     "empower": "^1.0.1",
-    "espower-source": "^1.0.0",
-    "power-assert-formatter": "^1.1.0"
+    "espower-source": "^1.0.0"
   },
+  "directories": {
+    "lib": "./lib"
+  },
+  "files": [
+    "CHANGELOG.md",
+    "README.md",
+    "index.js",
+    "lib",
+    "package.json",
+    "test"
+  ],
+  "homepage": "http://github.com/twada/power-assert-renderers",
   "keywords": [
-    "ava",
-    "power-assert"
+    "assert",
+    "assertion",
+    "power-assert",
+    "test",
+    "testing"
   ],
   "license": "MIT",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/twada/power-assert-renderers.git"
+  },
   "scripts": {
     "test": "ava"
   }
