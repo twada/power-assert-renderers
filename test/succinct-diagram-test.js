@@ -116,3 +116,33 @@ test('Identifier', t => {
         eval(weave('assert(foo);'));
     });
 });
+
+
+test('CallExpression', t => {
+    const expected =
+`  
+  assert(foo(name))
+         |         
+         false     
+  `;
+    runTest(t, expected, () => {
+        const name = 'bar';
+        const foo = (n) => false;
+        eval(weave('assert(foo(name));'));
+    });
+});
+
+
+test('deep CallExpression', t => {
+    const expected =
+`  
+  assert(en.foo(bar()))
+            |          
+            false      
+  `;
+    runTest(t, expected, () => {
+        const bar = () => 'baz';
+        const en = { foo: (n) => false };
+        eval(weave('assert(en.foo(bar()));'));
+    });
+});
