@@ -76,6 +76,21 @@ test('BinaryExpression of CallExpression', t => {
 });
 
 
+test('non-Punctuator BinaryExpression operator', t => {
+    const expected =
+`  
+  assert(foo instanceof Person)
+         |              |      
+         "bob"          #function#
+  `;
+    runTest(t, expected, () => {
+        function Person (name) { this.name = name; };
+        const foo = 'bob';
+        eval(weave('assert(foo instanceof Person);'));
+    });
+});
+
+
 test('MemberExpression', t => {
     const expected =
 `  
