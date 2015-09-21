@@ -78,3 +78,41 @@ test('BinaryExpression of CallExpression', t => {
     }
     t.end();
 });
+
+
+test('MemberExpression', t => {
+    const expected =
+`  
+  assert.ok(en.foo)
+               |   
+               false
+  `;
+    const en = { foo: false };
+    try {
+        eval(weave('assert.ok(en.foo);'));
+        t.fail('AssertionError is not thrown');
+    } catch (e) {
+        t.is(e.message, expected);
+        t.is(e.name, 'AssertionError');
+    }
+    t.end();
+});
+
+
+test('deep MemberExpression', t => {
+    const expected =
+`  
+  assert.ok(en.foo.bar)
+                   |   
+                   false
+  `;
+    const en = { foo: { bar: false } };
+    try {
+        eval(weave('assert.ok(en.foo.bar);'));
+        t.fail('AssertionError is not thrown');
+    } catch (e) {
+        t.is(e.message, expected);
+        t.is(e.name, 'AssertionError');
+    }
+    t.end();
+});
