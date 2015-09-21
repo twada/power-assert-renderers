@@ -11,6 +11,17 @@ function weave (line, options) {
     return espowerSource(line, filepath, {sourceRoot: sourceRoot});
 }
 
+function runTest (t, expected, body) {
+    try {
+        body();
+        t.fail('AssertionError is not thrown');
+    } catch (e) {
+        t.is(e.message, expected);
+        t.is(e.name, 'AssertionError');
+    }
+    t.end();
+}
+
 const options = {
     renderers: [
         './built-in/assertion',
@@ -27,16 +38,11 @@ test('BinaryExpression of Identifier', t => {
             |        |    
             "foo"    "bar"
   `;
-    const hoge = 'foo';
-    const fuga = 'bar';
-    try {
+    runTest(t, expected, () => {
+        const hoge = 'foo';
+        const fuga = 'bar';
         eval(weave('assert.ok(hoge === fuga);'));
-        t.fail('AssertionError is not thrown');
-    } catch (e) {
-        t.is(e.message, expected);
-        t.is(e.name, 'AssertionError');
-    }
-    t.end();
+    });
 });
 
 
@@ -47,16 +53,11 @@ test('BinaryExpression of MemberExpression', t => {
                |          |    
                "bar"      "tata"
   `;
-    const en = { foo: 'bar', toto: 'tata' };
-    const fr = { toto: 'tata'};
-    try {
+    runTest(t, expected, () => {
+        const en = { foo: 'bar', toto: 'tata' };
+        const fr = { toto: 'tata'};
         eval(weave('assert.ok(en.foo === fr.toto);'));
-        t.fail('AssertionError is not thrown');
-    } catch (e) {
-        t.is(e.message, expected);
-        t.is(e.name, 'AssertionError');
-    }
-    t.end();
+    });
 });
 
 
@@ -67,16 +68,11 @@ test('BinaryExpression of CallExpression', t => {
                |            |      
                "bar"        "tata" 
   `;
-    const en = { foo: () => 'bar' };
-    const fr = { toto: () => 'tata' };
-    try {
+    runTest(t, expected, () => {
+        const en = { foo: () => 'bar' };
+        const fr = { toto: () => 'tata' };
         eval(weave('assert.ok(en.foo() === fr.toto());'));
-        t.fail('AssertionError is not thrown');
-    } catch (e) {
-        t.is(e.message, expected);
-        t.is(e.name, 'AssertionError');
-    }
-    t.end();
+    });
 });
 
 
@@ -87,15 +83,10 @@ test('MemberExpression', t => {
                |   
                false
   `;
-    const en = { foo: false };
-    try {
+    runTest(t, expected, () => {
+        const en = { foo: false };
         eval(weave('assert.ok(en.foo);'));
-        t.fail('AssertionError is not thrown');
-    } catch (e) {
-        t.is(e.message, expected);
-        t.is(e.name, 'AssertionError');
-    }
-    t.end();
+    });
 });
 
 
@@ -106,13 +97,8 @@ test('deep MemberExpression', t => {
                    |   
                    false
   `;
-    const en = { foo: { bar: false } };
-    try {
+    runTest(t, expected, () => {
+        const en = { foo: { bar: false } };
         eval(weave('assert.ok(en.foo.bar);'));
-        t.fail('AssertionError is not thrown');
-    } catch (e) {
-        t.is(e.message, expected);
-        t.is(e.name, 'AssertionError');
-    }
-    t.end();
+    });
 });
