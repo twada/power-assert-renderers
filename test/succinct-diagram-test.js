@@ -5,7 +5,7 @@ import empower from 'empower';
 import formatter from 'power-assert-formatter';
 import SuccinctRenderer from '../lib/succinct-diagram';
 
-function weave (line, options) {
+function weave (line) {
     var filepath = '/absolute/path/to/project/test/some_test.js';
     var sourceRoot = '/absolute/path/to/project';
     return espowerSource(line, filepath, {sourceRoot: sourceRoot});
@@ -22,13 +22,12 @@ function runTest (t, expected, body) {
     t.end();
 }
 
-const options = {
+const assert = empower(baseAssert, formatter({
     renderers: [
         './built-in/assertion',
         SuccinctRenderer
     ]
-};
-const assert = empower(baseAssert, formatter(options));
+}));
 
 
 test('BinaryExpression of Identifier', t => {
