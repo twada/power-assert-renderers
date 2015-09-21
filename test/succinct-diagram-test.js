@@ -46,6 +46,33 @@ test('BinaryExpression of Identifier', t => {
 });
 
 
+test('BinaryExpression of Identifier and Literal', t => {
+    const expected =
+`  
+  assert(hoge === "bar")
+         |              
+         "foo"          
+  `;
+    runTest(t, expected, () => {
+        const hoge = 'foo';
+        eval(weave('assert(hoge === "bar");'));
+    });
+});
+
+
+test('BinaryExpression of Literal', t => {
+    const expected =
+`  
+  assert("foo" === "bar")
+                         
+                         
+  `;
+    runTest(t, expected, () => {
+        eval(weave('assert("foo" === "bar");'));
+    });
+});
+
+
 test('BinaryExpression of MemberExpression', t => {
     const expected =
 `  
