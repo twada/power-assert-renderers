@@ -102,3 +102,17 @@ test('deep MemberExpression', t => {
         eval(weave('assert.ok(en.foo.bar);'));
     });
 });
+
+
+test('Identifier', t => {
+    const expected =
+`  
+  assert.ok(foo)
+            |   
+            false
+  `;
+    runTest(t, expected, () => {
+        const foo = false;
+        eval(weave('assert.ok(foo);'));
+    });
+});
