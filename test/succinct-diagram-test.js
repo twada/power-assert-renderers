@@ -3,7 +3,7 @@ import baseAssert from 'assert';
 import espowerSource from 'espower-source';
 import empower from 'empower';
 import formatter from 'power-assert-formatter';
-import SuccinctRenderer from '../lib/succinct-diagram';
+import {AssertionRenderer, SuccinctRenderer} from '../index';
 
 function weave (line) {
     var filepath = '/absolute/path/to/project/test/some_test.js';
@@ -24,7 +24,7 @@ function runTest (t, expected, body) {
 
 const assert = empower(baseAssert, formatter({
     renderers: [
-        './built-in/assertion',
+        AssertionRenderer,
         SuccinctRenderer
     ]
 }));
