@@ -34,14 +34,14 @@ const assert = empower(baseAssert, formatter(options));
 test('BinaryExpression of Identifier', t => {
     const expected =
 `  
-  assert.ok(hoge === fuga)
-            |        |    
-            "foo"    "bar"
+  assert(hoge === fuga)
+         |        |    
+         "foo"    "bar"
   `;
     runTest(t, expected, () => {
         const hoge = 'foo';
         const fuga = 'bar';
-        eval(weave('assert.ok(hoge === fuga);'));
+        eval(weave('assert(hoge === fuga);'));
     });
 });
 
@@ -49,14 +49,14 @@ test('BinaryExpression of Identifier', t => {
 test('BinaryExpression of MemberExpression', t => {
     const expected =
 `  
-  assert.ok(en.foo === fr.toto)
-               |          |    
-               "bar"      "tata"
+  assert(en.foo === fr.toto)
+            |          |    
+            "bar"      "tata"
   `;
     runTest(t, expected, () => {
         const en = { foo: 'bar', toto: 'tata' };
         const fr = { toto: 'tata'};
-        eval(weave('assert.ok(en.foo === fr.toto);'));
+        eval(weave('assert(en.foo === fr.toto);'));
     });
 });
 
@@ -64,14 +64,14 @@ test('BinaryExpression of MemberExpression', t => {
 test('BinaryExpression of CallExpression', t => {
     const expected =
 `  
-  assert.ok(en.foo() === fr.toto())
-               |            |      
-               "bar"        "tata" 
+  assert(en.foo() === fr.toto())
+            |            |      
+            "bar"        "tata" 
   `;
     runTest(t, expected, () => {
         const en = { foo: () => 'bar' };
         const fr = { toto: () => 'tata' };
-        eval(weave('assert.ok(en.foo() === fr.toto());'));
+        eval(weave('assert(en.foo() === fr.toto());'));
     });
 });
 
@@ -79,13 +79,13 @@ test('BinaryExpression of CallExpression', t => {
 test('MemberExpression', t => {
     const expected =
 `  
-  assert.ok(en.foo)
-               |   
-               false
+  assert(en.foo)
+            |   
+            false
   `;
     runTest(t, expected, () => {
         const en = { foo: false };
-        eval(weave('assert.ok(en.foo);'));
+        eval(weave('assert(en.foo);'));
     });
 });
 
@@ -93,13 +93,13 @@ test('MemberExpression', t => {
 test('deep MemberExpression', t => {
     const expected =
 `  
-  assert.ok(en.foo.bar)
-                   |   
-                   false
+  assert(en.foo.bar)
+                |   
+                false
   `;
     runTest(t, expected, () => {
         const en = { foo: { bar: false } };
-        eval(weave('assert.ok(en.foo.bar);'));
+        eval(weave('assert(en.foo.bar);'));
     });
 });
 
@@ -107,12 +107,12 @@ test('deep MemberExpression', t => {
 test('Identifier', t => {
     const expected =
 `  
-  assert.ok(foo)
-            |   
-            false
+  assert(foo)
+         |   
+         false
   `;
     runTest(t, expected, () => {
         const foo = false;
-        eval(weave('assert.ok(foo);'));
+        eval(weave('assert(foo);'));
     });
 });
