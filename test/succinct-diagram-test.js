@@ -30,6 +30,78 @@ const assert = empower(baseAssert, formatter({
 }));
 
 
+test('Identifier', t => {
+    const expected =
+`  
+  assert(foo)
+         |   
+         false
+  `;
+    runTest(t, expected, () => {
+        const foo = false;
+        eval(weave('assert(foo);'));
+    });
+});
+
+
+test('MemberExpression', t => {
+    const expected =
+`  
+  assert(en.foo)
+            |   
+            false
+  `;
+    runTest(t, expected, () => {
+        const en = { foo: false };
+        eval(weave('assert(en.foo);'));
+    });
+});
+
+
+test('deep MemberExpression', t => {
+    const expected =
+`  
+  assert(en.foo.bar)
+                |   
+                false
+  `;
+    runTest(t, expected, () => {
+        const en = { foo: { bar: false } };
+        eval(weave('assert(en.foo.bar);'));
+    });
+});
+
+
+test('CallExpression', t => {
+    const expected =
+`  
+  assert(foo(name))
+         |         
+         false     
+  `;
+    runTest(t, expected, () => {
+        const name = 'bar';
+        const foo = (n) => false;
+        eval(weave('assert(foo(name));'));
+    });
+});
+
+
+test('deep CallExpression', t => {
+    const expected =
+`  
+  assert(en.foo(bar()))
+            |          
+            false      
+  `;
+    runTest(t, expected, () => {
+        const bar = () => 'baz';
+        const en = { foo: (n) => false };
+        eval(weave('assert(en.foo(bar()));'));
+    });
+});
+
+
 test('BinaryExpression of Identifier', t => {
     const expected =
 `  
@@ -113,77 +185,5 @@ test('non-Punctuator BinaryExpression operator', t => {
         function Person (name) { this.name = name; };
         const foo = 'bob';
         eval(weave('assert(foo instanceof Person);'));
-    });
-});
-
-
-test('MemberExpression', t => {
-    const expected =
-`  
-  assert(en.foo)
-            |   
-            false
-  `;
-    runTest(t, expected, () => {
-        const en = { foo: false };
-        eval(weave('assert(en.foo);'));
-    });
-});
-
-
-test('deep MemberExpression', t => {
-    const expected =
-`  
-  assert(en.foo.bar)
-                |   
-                false
-  `;
-    runTest(t, expected, () => {
-        const en = { foo: { bar: false } };
-        eval(weave('assert(en.foo.bar);'));
-    });
-});
-
-
-test('Identifier', t => {
-    const expected =
-`  
-  assert(foo)
-         |   
-         false
-  `;
-    runTest(t, expected, () => {
-        const foo = false;
-        eval(weave('assert(foo);'));
-    });
-});
-
-
-test('CallExpression', t => {
-    const expected =
-`  
-  assert(foo(name))
-         |         
-         false     
-  `;
-    runTest(t, expected, () => {
-        const name = 'bar';
-        const foo = (n) => false;
-        eval(weave('assert(foo(name));'));
-    });
-});
-
-
-test('deep CallExpression', t => {
-    const expected =
-`  
-  assert(en.foo(bar()))
-            |          
-            false      
-  `;
-    runTest(t, expected, () => {
-        const bar = () => 'baz';
-        const en = { foo: (n) => false };
-        eval(weave('assert(en.foo(bar()));'));
     });
 });
