@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "array-foreach": "^1.0.1",
+    "array-some": "^1.0.0",
     "object-keys": "^1.0.0",
     "type-name": "^1.0.1"
   },

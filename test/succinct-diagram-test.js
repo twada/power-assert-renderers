@@ -76,7 +76,8 @@ test('CallExpression', t => {
     const expected =
 `  
   assert(foo(name))
-         |         
+         |   |     
+         |   "bar" 
          false     
   `;
     runTest(t, expected, () => {
@@ -91,7 +92,8 @@ test('deep CallExpression', t => {
     const expected =
 `  
   assert(en.foo(bar()))
-            |          
+            |   |      
+            |   "baz"  
             false      
   `;
     runTest(t, expected, () => {
@@ -185,5 +187,55 @@ test('non-Punctuator BinaryExpression operator', t => {
         function Person (name) { this.name = name; };
         const foo = 'bob';
         eval(weave('assert(foo instanceof Person);'));
+    });
+});
+
+
+test('LogicalExpression of Identifiers', t => {
+    const expected =
+`  
+  assert(x || y || z)
+         |    |    | 
+         |    0    null
+         false       
+  `;
+    runTest(t, expected, () => {
+        const x = false;
+        const y = 0;
+        const z = null;
+        eval(weave('assert(x || y || z);'));
+    });
+});
+
+
+test('LogicalExpression of Identifier evaluation order', t => {
+    const expected =
+`  
+  assert(x && y && z)
+         |    |      
+         |    0      
+         "yeah"      
+  `;
+    runTest(t, expected, () => {
+        const x = 'yeah';
+        const y = 0;
+        const z = true;
+        eval(weave('assert(x && y && z);'));
+    });
+});
+
+
+test('LogicalExpression of CallExpression and MemberExpression', t => {
+    const expected =
+`  
+  assert(x.foo() || y() || z.val)
+           |        |        |   
+           false    null     0   
+  `;
+    runTest(t, expected, () => {
+        const x = { foo: (n) => false };
+        const y = (n) => null;
+        const z = { val: 0 };
+        eval(weave('assert(x.foo() || y() || z.val);'));
     });
 });
