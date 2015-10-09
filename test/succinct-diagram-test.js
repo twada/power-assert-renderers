@@ -239,3 +239,20 @@ test('LogicalExpression of CallExpression and MemberExpression', t => {
         eval(weave('assert(x.foo() || y() || z.val);'));
     });
 });
+
+
+test('ArrayExpression as an argument of CallExpression', t => {
+    const expected =
+`  
+  assert(pop([zero,one,two]) === one)
+         |    |    |   |         |   
+         2    0    1   2         1   
+  `;
+    runTest(t, expected, () => {
+        const pop = (ary) => ary.pop();
+        const zero = 0;
+        const one = 1;
+        const two = 2;
+        eval(weave('assert(pop([zero,one,two]) === one);'));
+    });
+});
