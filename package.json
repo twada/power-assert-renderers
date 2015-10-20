@@ -20,6 +20,7 @@
     "ava": "^0.2.0",
     "empower": "^1.0.1",
     "espower-source": "^1.0.0",
+    "licensify": "^2.0.1",
     "power-assert-formatter": "^1.1.0"
   },
   "directories": {
@@ -50,7 +51,7 @@
     "url": "http://github.com/twada/power-assert-renderers.git"
   },
   "scripts": {
-    "build": "browserify index.js --standalone powerAssertRenderers | derequire > ./build/power-assert-renderers.js",
+    "build": "browserify index.js -p licensify --standalone powerAssertRenderers | derequire > ./build/power-assert-renderers.js",
     "test": "ava"
   }
 }
