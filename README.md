@@ -3,6 +3,10 @@ power-assert-renderers
 
 Power Assert output renderers.
 
+[![Build Status][travis-image]][travis-url]
+[![NPM version][npm-image]][npm-url]
+[![License][license-image]][license-url]
+
 
 DESCRIPTION
 ---------------------------------------
@@ -126,3 +130,13 @@ AUTHOR
 LICENSE
 ---------------------------------------
 Licensed under the [MIT](https://github.com/twada/power-assert-renderers/blob/master/MIT-LICENSE.txt) license.
+
+
+[travis-url]: http://travis-ci.org/twada/power-assert-renderers
+[travis-image]: https://secure.travis-ci.org/twada/power-assert-renderers.svg?branch=master
+
+[npm-url]: https://npmjs.org/package/power-assert-renderers
+[npm-image]: https://badge.fury.io/js/power-assert-renderers.svg
+
+[license-url]: https://github.com/twada/power-assert-renderers/blob/master/MIT-LICENSE.txt
+[license-image]: http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat
