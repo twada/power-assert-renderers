@@ -118,17 +118,6 @@ Install
     <script type="text/javascript" src="./path/to/node_modules/power-assert-renderers/build/power-assert-renderers.js"></script>
 
 
-### via bower
-
-Install
-
-    $ bower install --save-dev power-assert-renderers
-
-Then load (`powerAssertRenderers` function is exported)
-
-    <script type="text/javascript" src="./path/to/bower_components/power-assert-renderers/build/power-assert-renderers.js"></script>
-
-
 AUTHOR
 ---------------------------------------
 * [Takuto Wada](http://github.com/twada)
