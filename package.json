@@ -28,6 +28,7 @@
   "files": [
     "CHANGELOG.md",
     "README.md",
+    "MIT-LICENSE.txt",
     "index.js",
     "lib",
     "package.json",
