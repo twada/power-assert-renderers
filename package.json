@@ -49,6 +49,7 @@
     "url": "http://github.com/twada/power-assert-renderers.git"
   },
   "scripts": {
+    "build": "browserify index.js --standalone powerAssertRenderers | derequire > ./build/power-assert-renderers.js",
     "test": "ava"
   }
 }
