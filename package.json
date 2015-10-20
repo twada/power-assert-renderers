@@ -29,6 +29,7 @@
     "CHANGELOG.md",
     "README.md",
     "MIT-LICENSE.txt",
+    "build/power-assert-renderers.js",
     "index.js",
     "lib",
     "package.json",
