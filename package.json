@@ -17,7 +17,7 @@
     "type-name": "^1.0.1"
   },
   "devDependencies": {
-    "ava": "^0.2.0",
+    "ava": "^0.3.0",
     "empower": "^1.0.1",
     "espower-source": "^1.0.0",
     "licensify": "^2.0.1",
