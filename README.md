@@ -10,7 +10,7 @@ Power Assert output renderers.
 
 DESCRIPTION
 ---------------------------------------
-`power-assert-renderers` is various output renderers for [power-assert](http://github.com/power-assert-js/power-assert).
+`power-assert-renderers` is a set of various output renderers for [power-assert](http://github.com/power-assert-js/power-assert) extracted out from [power-assert-formatter](https://github.com/power-assert-js/power-assert-formatter).
 
 Pull-requests, issue reports and patches are always welcomed. See [power-assert](http://github.com/power-assert-js/power-assert) project for more documentation.
 
