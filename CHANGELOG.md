@@ -1,3 +1,6 @@
+__[DEPRECATED] this module is reorganized into [power-assert-runtime](https://github.com/twada/power-assert-runtime)__
+
+
 ## [0.1.0](https://github.com/twada/power-assert-renderers/releases/tag/v0.1.0) (2015-10-21)
 
 

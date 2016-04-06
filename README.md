@@ -1,6 +1,10 @@
 power-assert-renderers
 ================================
 
+
+__[DEPRECATED] this module is reorganized into [power-assert-runtime](https://github.com/twada/power-assert-runtime)__
+
+
 Power Assert output renderers.
 
 [![Build Status][travis-image]][travis-url]
