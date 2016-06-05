@@ -11,10 +11,11 @@
     "url": "http://github.com/twada/power-assert-renderers/issues"
   },
   "dependencies": {
-    "array-foreach": "^1.0.1",
-    "array-some": "^1.0.0",
-    "object-keys": "^1.0.0",
-    "type-name": "^1.0.1"
+    "power-assert-renderer-file": "^1.0.0",
+    "power-assert-renderer-assertion": "^1.0.0",
+    "power-assert-renderer-diagram": "^1.0.0",
+    "power-assert-renderer-comparison": "^1.0.0",
+    "power-assert-renderer-succinct": "^1.0.0"
   },
   "devDependencies": {
     "ava": "^0.3.0",
@@ -31,10 +32,7 @@
     "README.md",
     "MIT-LICENSE.txt",
     "build/power-assert-renderers.js",
-    "index.js",
-    "lib",
-    "package.json",
-    "test"
+    "index.js"
   ],
   "homepage": "http://github.com/twada/power-assert-renderers",
   "keywords": [
